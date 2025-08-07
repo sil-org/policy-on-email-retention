@@ -1,7 +1,7 @@
 ---
-author: ScottK
+author: Scott Kohler
 title: SIL Global Email Retention Policy [DRAFT]
-date: "Version 2025-07-15-1535"
+date: "Version 2025-08-07-0954"
 fontsize: 11pt
 papersize: letter
 header-includes:
@@ -20,7 +20,8 @@ header-includes:
   - \fancyfoot[R]{\thepage{} of \pageref{LastPage}}
   - \fancyfoot[L]{\DTMnow}
   - \linespread{1.05}
-  - \setcounter{tocdepth}{1}
+  - \setcounter{tocdepth}{2}
+  - \setcounter{secnumdepth}{2}
   - \setmainfont{gentiumplus}
 geometry:
   - top=0.75in
@@ -32,5 +33,4 @@ hypersetup:
   - allcolors=blue
   - hidelinks=false
 ---
-\maketitle
 \tableofcontents
