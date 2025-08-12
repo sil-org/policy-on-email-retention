@@ -1,6 +1,6 @@
 # SIL Global Email Data Retention Policy
 
-**Version:** 0.1 **Effective Date:** August 7, 2025 **Last Reviewed:** August 7, 2025
+**Version:** 0.2 **Effective Date:** [TBD] **Last Reviewed:** [TBD]
 
 ## Policy Statement
 
@@ -14,7 +14,7 @@ The purpose of this policy is to:
     
   - Ensure compliance with relevant legal, regulatory, and contractual obligations.
     
-  - Reduce the volume of stored email data, thereby lowering storage costs and improving system performance.
+  - Reduce the volume of stored email data, thereby lowering administration costs and improving system performance.
     
   - Minimize the risk associated with retaining unnecessary or outdated information.
     
@@ -62,7 +62,7 @@ Certain email communications may require a retention period different from the s
     
     - _Examples:_ Strategic planning discussions, founding documents, significant policy decisions, major campaign launches.
         
-- **Employee Departure:** Upon the departure of an employee, their email account will be subject to the standard 3-year retention policy for historical emails. However, active access will be immediately terminated. Critical business-related emails of departing employees may be transferred to their supervisor or a designated successor for continued operational needs, but subject to the overall retention policy.
+- **Employee Departure:** Upon the departure of an employee, their email account will be subject to a 6-month retention policy for historical emails. However, active access will be immediately terminated. Critical business-related emails of departing employees may be transferred to their supervisor or a designated successor for continued operational needs, but subject to the overall retention policy.
     
 
 ## Implementation and Responsibilities
@@ -115,4 +115,4 @@ This policy will be reviewed at least annually, or as needed, to ensure its cont
 
 **[Johnstone Ndunde]** Executive Director SIL Global
 
-**Date:** August 7, 2025
+**Date:** [TBD]

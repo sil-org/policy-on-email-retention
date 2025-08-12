@@ -1,7 +1,7 @@
 ---
 author: Scott Kohler
 title: SIL Global Email Retention Policy [DRAFT]
-date: "Version 2025-08-07-0954"
+date: "Version 2025-08-07-1052"
 fontsize: 11pt
 papersize: letter
 header-includes:
@@ -33,4 +33,3 @@ hypersetup:
   - allcolors=blue
   - hidelinks=false
 ---
-\tableofcontents
