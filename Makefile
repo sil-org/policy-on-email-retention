@@ -3,6 +3,7 @@ COMMIT_DATE  = $(shell date -d @$(COMMIT_EPOCH) +"%F-%H%M")
 TITLE_DATE   = $(shell date -d @$(COMMIT_EPOCH) +"%e %b %Y, %H:%M:%S")
 VERSION      = $(shell git describe --tags)
 FILENAME     = "email_data_retention"
+RELEASE_NAME = "SIL-EMail-Retention $(VERSION)"
 
 # Makes sure latexmk always runs
 .PHONY: $(FILENAME)-$(COMMIT_DATE).pdf all clean check checkall gdrive release
@@ -42,7 +43,7 @@ gdrive:
 	gdrive files import $(FILENAME)-$(COMMIT_DATE).docx
 
 release: 
-	gh release create $(VERSION) --generate-notes -p -t "SIL-Data-Governance $(VERSION)"  $(FILENAME)-$(COMMIT_DATE).pdf $(FILENAME)-$(COMMIT_DATE).docx $(FILENAME)-$(COMMIT_DATE).odt
+	gh release create $(VERSION) --generate-notes -p -t "$(RELEASE_NAME)"  $(FILENAME)-$(COMMIT_DATE).pdf $(FILENAME)-$(COMMIT_DATE).docx $(FILENAME)-$(COMMIT_DATE).odt
 	
 clean:
 	-latexmk -c
