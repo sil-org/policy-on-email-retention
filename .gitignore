@@ -1,6 +1,7 @@
 # environment files typically containing secrets
 *.env
 !example.env
+000-headers-toc.md
 
 # directories created by developer tools
 .idea/

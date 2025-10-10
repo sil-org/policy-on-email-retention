@@ -1,38 +1,52 @@
 COMMIT_EPOCH = $(shell git log -1 --pretty=%ct)
-COMMIT_DATE = $(shell date -d @$(COMMIT_EPOCH) +"%F-%H%M")
-FILENAME = "email_data_retention"
+COMMIT_DATE  = $(shell date -d @$(COMMIT_EPOCH) +"%F-%H%M")
+TITLE_DATE   = $(shell date -d @$(COMMIT_EPOCH) +"%e %b %Y, %H:%M:%S")
+VERSION      = $(shell git describe --tags)
+FILENAME     = "email_data_retention"
 
 # Makes sure latexmk always runs
-.PHONY: $(FILENAME)-$(COMMIT_DATE).pdf all clean
-all: $(FILENAME)-$(COMMIT_DATE).pdf
+.PHONY: $(FILENAME)-$(COMMIT_DATE).pdf all clean check checkall gdrive release
+all: $(FILENAME)-$(COMMIT_DATE).pdf $(FILENAME)-$(COMMIT_DATE).docx $(FILENAME)-$(COMMIT_DATE).odt
 
-$(FILENAME)-$(COMMIT_DATE).tex: $(wildcard ??-*.md)
-	COMMIT_DATE=$(COMMIT_DATE) envsubst < 00-headers-toc.mdt > 00-headers-toc.md
-	pandoc -s $? -t latex -o $(FILENAME)-$(COMMIT_DATE).tex
+$(FILENAME)-$(COMMIT_DATE).md: $(wildcard ???-*.md)
+	VERSION=$(VERSION) TITLE_DATE="$(TITLE_DATE)" envsubst < 000-headers-toc.mdt > 000-headers-toc.md
+	-rm $(FILENAME)-$(COMMIT_DATE).md 
+	cat $? >> $(FILENAME)-$(COMMIT_DATE).md 
+
+$(FILENAME)-$(COMMIT_DATE).tex: $(FILENAME)-$(COMMIT_DATE).md
+	pandoc -s $(FILENAME)-$(COMMIT_DATE).md -t latex -o $(FILENAME)-$(COMMIT_DATE).tex
 
 $(FILENAME)-$(COMMIT_DATE).pdf: $(FILENAME)-$(COMMIT_DATE).tex $(FILENAME)-$(COMMIT_DATE).xmpdata
 	SOURCE_DATE_EPOCH=$(COMMIT_EPOCH) latexmk -pdf -lualatex -use-make $<
-	evince $(FILENAME)-$(COMMIT_DATE).pdf
 
 $(FILENAME)-$(COMMIT_DATE).xmpdata: source_xmpdata
 	cp source_xmpdata $(FILENAME)-$(COMMIT_DATE).xmpdata
 
+check:	$(FILENAME)-$(COMMIT_DATE).pdf
+	evince $(FILENAME)-$(COMMIT_DATE).pdf
+
+checkall:	check $(FILENAME)-$(COMMIT_DATE).docx $(FILENAME)-$(COMMIT_DATE).odt 
+	libreoffice $(FILENAME)-$(COMMIT_DATE).docx
+	libreoffice $(FILENAME)-$(COMMIT_DATE).odt
+
 docx: $(FILENAME)-$(COMMIT_DATE).docx
 odt: $(FILENAME)-$(COMMIT_DATE).odt
 
-$(FILENAME)-$(COMMIT_DATE).docx: $(wildcard ??-*.md)
-	COMMIT_DATE=$(COMMIT_DATE) envsubst < 00-headers-toc.mdt > 00-headers-toc.md
-	pandoc -s $? -t docx -o $(FILENAME)-$(COMMIT_DATE).docx
-	libreoffice $(FILENAME)-$(COMMIT_DATE).docx
+$(FILENAME)-$(COMMIT_DATE).docx: $(FILENAME)-$(COMMIT_DATE).md
+	pandoc -s $(FILENAME)-$(COMMIT_DATE).md -t docx -o $(FILENAME)-$(COMMIT_DATE).docx
 
-$(FILENAME)-$(COMMIT_DATE).odt: $(wildcard ??-*.md)
-	COMMIT_DATE=$(COMMIT_DATE) envsubst < 00-headers-toc.mdt > 00-headers-toc.md
-	pandoc -s $? -t odt -o $(FILENAME)-$(COMMIT_DATE).odt
-	libreoffice $(FILENAME)-$(COMMIT_DATE).odt
+$(FILENAME)-$(COMMIT_DATE).odt: $(FILENAME)-$(COMMIT_DATE).md
+	pandoc -s $(FILENAME)-$(COMMIT_DATE).md -t odt -o $(FILENAME)-$(COMMIT_DATE).odt
 
+gdrive:
+	gdrive files import $(FILENAME)-$(COMMIT_DATE).docx
+
+release: 
+	gh release create $(VERSION) --generate-notes -p -t "SIL-Data-Governance $(VERSION)"  $(FILENAME)-$(COMMIT_DATE).pdf $(FILENAME)-$(COMMIT_DATE).docx $(FILENAME)-$(COMMIT_DATE).odt
+	
 clean:
-	latexmk -c
-delete:
-	latexmk -C
-	rm $(FILENAME)-$(COMMIT_DATE).odt $(FILENAME)-$(COMMIT_DATE).docx $(FILENAME)-$(COMMIT_DATE).tex $(FILENAME)-$(COMMIT_DATE).pdf pdfa.xmpi *.xmpdata *.tex
+	-latexmk -c
+delete:	clean
+	-rm $(FILENAME)-$(COMMIT_DATE).md $(FILENAME)-$(COMMIT_DATE).odt $(FILENAME)-$(COMMIT_DATE).docx $(FILENAME)-$(COMMIT_DATE).tex $(FILENAME)-$(COMMIT_DATE).pdf pdfa.xmpi *.xmpdata *.tex
+	git restore 000-headers-toc.md
 

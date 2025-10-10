@@ -1,7 +1,14 @@
 ---
-author: Scott Kohler
 title: SIL Global Email Retention Policy [DRAFT]
-date: "Version $COMMIT_DATE"
+author: "$TITLE_DATE"
+subject: "Email Retention Policy"
+keywords: 
+  - "SIL Global"
+  - email
+  - retention
+  - policy
+lang: en-US
+source: "https://github.com/sil-org/policy-on-email-retention/"
 fontsize: 11pt
 papersize: letter
 header-includes:
@@ -24,8 +31,8 @@ header-includes:
   - \setcounter{secnumdepth}{2}
   - \setmainfont{gentiumplus}
 geometry:
-  - top=0.75in
-  - bottom=1in
+  - top=0.70in
+  - bottom=0.75in
   - left=1in
   - right=1in
 hypersetup:
@@ -33,3 +40,7 @@ hypersetup:
   - allcolors=blue
   - hidelinks=false
 ---
+**Version:** $VERSION **Effective Date:** [TBD] **Last Reviewed:** [TBD] 
+**[Only PDF format is authoritative.]**
+
+
