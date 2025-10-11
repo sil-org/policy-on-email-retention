@@ -25,7 +25,7 @@ header-includes:
   - \pagestyle{fancy}
   - \fancyhf{}
   - \fancyfoot[R]{\thepage{} of \pageref{LastPage}}
-  - \fancyfoot[L]{\DTMnow}
+  - \fancyfoot[L]{\jobname.pdf}
   - \linespread{1.05}
   - \setcounter{tocdepth}{2}
   - \setcounter{secnumdepth}{2}
