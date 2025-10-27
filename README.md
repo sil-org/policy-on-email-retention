@@ -1,5 +1,5 @@
 # policy-on-email-retention
-Email Data Retention Policy [DRAFT] Github [Repository](https://github.com/silinternational/policy-on-email-retention)
+Email Data Retention Policy [DRAFT] Github [Repository](https://github.com/sil-org/policy-on-email-retention)
 
 ## Purpose
 
@@ -17,10 +17,10 @@ The document sections are plain text files using [MarkDown](https://www.markdown
 
 ## Overview
 
-[[00-headers-toc]] (https://github.com/silinternational/policy-on-email-retention/blob/main/00-headers-toc.md)
+[[00-headers-toc]] (https://github.com/sil-org/policy-on-email-retention/blob/main/00-headers-toc.md)
 
-[[01-intro]] (https://github.com/silinternational/policy-on-email-retention/blob/main/01-intro.md)
+[[01-intro]] (https://github.com/sil-org/policy-on-email-retention/blob/main/01-intro.md)
 
-[[02-body]] (https://github.com/silinternational/policy-on-email-retention/blob/main/02-body.md)
+[[02-body]] (https://github.com/sil-org/policy-on-email-retention/blob/main/02-body.md)
 
 
